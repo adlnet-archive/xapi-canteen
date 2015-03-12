@@ -312,12 +312,44 @@ define(function (require) {
       // Populate the table
       //getStatementsWithSearch(null, 0);
 
+      // Populate the saved-queries box
+      if (store.get("queries")) {
+        var q = store.get("queries");
+        q.forEach(function(i) {
+          //console.log(i);
+          var search = i.search;
+          var name = i.name;
+          var url = buildQueryString(search);
+          $("#saved-queries").append('<p><a title="' + url + '" rel="' + encodeURI(JSON.stringify(search)) + '" href="#">' + name + '</a></p>');
+        });
+      }
+
       $("#save-query").click(function(e) {
         var search = buildSearchArray();
         var url = buildQueryString(search);
+
         $("#xapi-query").val(url);
         var name = $("#query-name").val();
+
+        if (!store.enabled) {
+          console.log("your browser does not support localstorage, cannot save your query");
+        } else {
+          if (!store.get("queries")) {
+            store.set('queries', [{'name': name, 'search': search}]);
+          } else {
+            var q1 = store.get("queries");
+            store.set('queries', q1.concat([{'name': name, 'search': search}]));
+          }
+          //console.log(store.get("queries"));
+        }
+
         $("#saved-queries").append('<p><a title="' + url + '" rel="' + encodeURI(JSON.stringify(search)) + '" href="#">' + name + '</a></p>');
+        e.preventDefault();
+      });
+      
+      $("#clear-saved-queries").click(function(e) {
+        store.remove('queries');
+        $("#saved-queries").html("");
         e.preventDefault();
       });
 
