@@ -21,186 +21,189 @@
 
 <body>
 
-  <section class="container">
+  <section class="wide-container">
 
     <div class="page-header">
       <h1 class="text-primary"><i class="fa fa-circle-o-notch"></i> xAPI Canteen</h1>
       <h3 class="muted">Build, save and share your queries to a LRS. Don't report without it!</h3>
     </div>
 
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Queries</h3></div>
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3 class="panel-title">Query Dashboard</h3></div>
       <div class="panel-body">
 
         <div class="row">
 
-          <div class="col-md-6">
+          <div class="col-md-4">
 
             <div class="panel panel-info">
-              <div class="panel-heading"><h3 class="panel-title">Query Options</h3></div>
-              <div class="panel-body">
+              <div class="panel-heading collapser"><h4 class="panel-title"><a data-toggle="collapse" data-target="#build-new-query" href="#build-new-query" class="collapsed">Build New Query</a></h4></div>
 
-                <form id="statement-search-values">
+              <div id="build-new-query" class="panel-collapse collapse">
 
-                  <div class="row">
+                <div class="panel-body">
 
-                    <div class="form-group col-md-6">
-                      <label class="control-label" for="search-predefined-verb">Predefined Verb</label>
-                      <select class="form-control" name="search-predefined-verb" id="search-predefined-verb">
-                        <option></option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label class="control-label" for="search-verb-sort">Verb Sort</label>
-                      <select class="form-control" name="search-verb-sort" id="search-verb-sort">
-                        <option value="">Descending</option>
-                        <option value="true">Ascending</option>
-                      </select>
-                    </div>
+                  <form id="statement-search-values">
 
-                  </div><!-- .row -->
+                    <div class="row">
 
-                  <div class="row">
-
-                    <div class="form-group col-md-12">
-                      <label class="control-label" for="search-user-verb-id">Verb ID</label>
-                      <input type="text" class="form-control" value="" aria-describedby="Verb ID" placeholder="http://adlnet.gov/verbs/answered" id="search-user-verb-id" />
-                    </div>
-
-                  </div><!-- .row -->
-
-                  <div class="row">
-
-                    <div class="form-group col-md-12">
-                      <label class="control-label" for="search-actor-email">Actor Email</label>
-                      <input type="email" class="form-control" value="" aria-describedby="Actor Email" placeholder="tyler.mulligan.ctr@adlnet.gov" id="search-actor-email" />
-                    </div>
-
-                  </div><!-- .row -->
-
-                  <div class="row">
-
-                    <div class="form-group col-md-12">
-                      <label class="control-label" for="search-activity-id">Activity ID</label>
-                      <input type="text" class="form-control" value="" aria-describedby="Activity ID" placeholder="http://adlnet.gov/activities/question" id="search-activity-id" />
-                    </div>
-
-                  </div><!-- .row -->
-
-                  <div class="row">
-
-                    <div class="form-group col-md-6">
-                      <label for="search-related-agents">Related Agents</label>
-                      <select class="form-control" aria-describedby="Related Agents" id="search-related-agents">
-                        <option></option>
-                        <option>false</option>
-                        <option>true</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                      <label for="search-related-activities">Related Activities</label>
-                      <select class="form-control" aria-describedby="Related Activities" id="search-related-activities">
-                        <option></option>
-                        <option>false</option>
-                        <option>true</option>
-                      </select>
-                    </div>
-
-                  </div><!-- .row -->
-
-                  <div class="row">
-
-                    <div class="form-group col-md-12">
-                      <label class="control-label" for="search-registration-id">Registration ID</label>
-                      <input type="text" class="form-control" value="" aria-describedby="Registration ID" placeholder="51a6f860-1997-11e3-8ffd-0800200c9a66" id="search-registration-id" pattern="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" />
-                    </div>
-
-                  </div><!-- .row -->
-
-                  <div class="row">
-
-                    <div class="form-group col-md-12">
-                      <label class="control-label" for="search-statement-id">Statement ID</label>
-                      <input type="text" class="form-control" value="" aria-describedby="Activity ID" placeholder="ef8a3c05-7c88-4d46-a821-c6f2f061ef23" id="search-statement-id" pattern="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" />
-                    </div>
-
-                  </div><!-- .row -->
-
-                  <div class="row">
-
-                    <div class="form-group col-md-12">
-                      <label class="control-label" for="search-voided-statement-id">Voided Statement ID</label>
-                      <input type="text" class="form-control" value="" aria-describedby="Voided Activity ID" placeholder="00d9f122-e9cd-4ea3-b180-9daa49c8a7e5" id="search-voided-statement-id" pattern="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" />
-                    </div>
-
-                  </div><!-- .row -->
-
-                  <div class="row">
-
-                    <div class="form-group col-md-6">
-                      <label class="control-label" for="search-statements-since-date">Since Date</label>
-                      <div class="input-group date" id="search-statements-since-date">
-                        <input type="text" class="form-control" />
-                        <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                      <div class="form-group col-md-6">
+                        <label class="control-label" for="search-predefined-verb">Predefined Verb</label>
+                        <select class="form-control" name="search-predefined-verb" id="search-predefined-verb">
+                          <option></option>
+                        </select>
                       </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                      <label class="control-label" for="search-statements-until-date">Until Date</label>
-                      <div class="input-group date" id="search-statements-until-date">
-                        <input type="text" class="form-control" />
-                        <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                      <div class="form-group col-md-6">
+                        <label class="control-label" for="search-verb-sort">Verb Sort</label>
+                        <select class="form-control" name="search-verb-sort" id="search-verb-sort">
+                          <option value="">Descending</option>
+                          <option value="true">Ascending</option>
+                        </select>
                       </div>
-                    </div>
 
-                  </div><!-- .row -->
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="search-user-verb-id">Verb ID</label>
+                        <input type="text" class="form-control" value="" aria-describedby="Verb ID" placeholder="http://adlnet.gov/verbs/answered" id="search-user-verb-id" />
+                      </div>
+
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="search-actor-email">Actor Email</label>
+                        <input type="email" class="form-control" value="" aria-describedby="Actor Email" placeholder="tyler.mulligan.ctr@adlnet.gov" id="search-actor-email" />
+                      </div>
+
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="search-activity-id">Activity ID</label>
+                        <input type="text" class="form-control" value="" aria-describedby="Activity ID" placeholder="http://adlnet.gov/activities/question" id="search-activity-id" />
+                      </div>
+
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-6">
+                        <label for="search-related-agents">Related Agents</label>
+                        <select class="form-control" aria-describedby="Related Agents" id="search-related-agents">
+                          <option></option>
+                          <option>false</option>
+                          <option>true</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="search-related-activities">Related Activities</label>
+                        <select class="form-control" aria-describedby="Related Activities" id="search-related-activities">
+                          <option></option>
+                          <option>false</option>
+                          <option>true</option>
+                        </select>
+                      </div>
+
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="search-registration-id">Registration ID</label>
+                        <input type="text" class="form-control" value="" aria-describedby="Registration ID" placeholder="51a6f860-1997-11e3-8ffd-0800200c9a66" id="search-registration-id" pattern="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" />
+                      </div>
+
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="search-statement-id">Statement ID</label>
+                        <input type="text" class="form-control" value="" aria-describedby="Activity ID" placeholder="ef8a3c05-7c88-4d46-a821-c6f2f061ef23" id="search-statement-id" pattern="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" />
+                      </div>
+
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="search-voided-statement-id">Voided Statement ID</label>
+                        <input type="text" class="form-control" value="" aria-describedby="Voided Activity ID" placeholder="00d9f122-e9cd-4ea3-b180-9daa49c8a7e5" id="search-voided-statement-id" pattern="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" />
+                      </div>
+
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-6">
+                        <label class="control-label" for="search-statements-since-date">Since Date</label>
+                        <div class="input-group date" id="search-statements-since-date">
+                          <input type="text" class="form-control" />
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label class="control-label" for="search-statements-until-date">Until Date</label>
+                        <div class="input-group date" id="search-statements-until-date">
+                          <input type="text" class="form-control" />
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                      </div>
+
+                    </div><!-- .row -->
+
+                    <div class="row">
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="search-limit">Limit</label>
+                        <input type="number" class="form-control" value="" aria-describedby="Limit" placeholder="25" id="search-limit" />
+                      </div>
+
+                    </div><!-- .row -->
+                    
+                  </form><!-- #statement-search-values -->
 
                   <div class="row">
 
                     <div class="form-group col-md-12">
-                      <label class="control-label" for="search-limit">Limit</label>
-                      <input type="number" class="form-control" value="" aria-describedby="Limit" placeholder="25" id="search-limit" />
+                      <label for="xapi-query">xAPI Query</label>
+                      <input type="text" class="form-control" value="" aria-describedby="xAPI Query" id="xapi-query" readonly />
                     </div>
 
-                  </div><!-- .row -->
-                  
-                </form><!-- #statement-search-values -->
-
-                <div class="row">
-
-                  <div class="form-group col-md-12">
-                    <label for="xapi-query">xAPI Query</label>
-                    <input type="text" class="form-control" value="" aria-describedby="xAPI Query" id="xapi-query" readonly />
                   </div>
 
-                </div>
+                  <div class="row">
 
-                <div class="row">
+                    <div class="form-group col-md-12">
+                      <label for="query-name">Query Name</label>
+                      <input type="text" class="form-control" value="" aria-describedby="Query Name" id="query-name" required />
+                    </div>
 
-                  <div class="form-group col-md-12">
-                    <label for="query-name">Query Name</label>
-                    <input type="text" class="form-control" value="" aria-describedby="Query Name" id="query-name" required />
                   </div>
 
-                </div>
+                  <p>
+                    <a class="btn btn-primary" href="#" role="button" id="get-statements-with-search">Get Statements <i class="glyphicon glyphicon-cloud-download"></i></a>
+                    <a class="btn btn-primary" href="#" role="button" id="save-query">Save Query <i class="glyphicon glyphicon-save"></i></a>
+                  </p>
 
-                <p>
-                  <a class="btn btn-primary" href="#" role="button" id="get-statements-with-search">Get Statements <i class="glyphicon glyphicon-cloud-download"></i></a>
-                  <a class="btn btn-primary" href="#" role="button" id="save-query">Save Query <i class="glyphicon glyphicon-save"></i></a>
-                </p>
+                </div><!-- .panel-body -->
 
-              </div><!-- .panel-body -->
+              </div>
+
             </div><!-- .panel -->
 
-          </div><!-- .col-md-6 -->
-          <div class="col-md-6">
-
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
               <div class="panel-heading"><h3 class="panel-title">Saved Queries</h3></div>
               <div class="panel-body">
 
@@ -215,6 +218,96 @@
               </div><!-- .panel-body -->
             </div><!-- .panel -->
 
+            <div class="panel panel-default">
+              <div class="panel-heading collapser">
+                <h4 class="panel-title"><a data-toggle="collapse" data-target="#auth" href="#auth" class="collapsed">LRS Basic Auth Setup</a></h4>
+              </div>
+              <div id="auth" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                  <div class="row">
+
+                    <form id="endpoint-values">
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="endpoint">Endpoint</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                          <input type="url" class="form-control" value="https://lrs.adlnet.gov/xapi/" aria-describedby="LRS Endpoint" id="endpoint" required />
+                        </div>
+                      </div>
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="username">Username</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                          <input type="text" class="form-control" value="xapi-tools" aria-describedby="Username" id="username" required />
+                        </div>
+                      </div>
+
+                      <div class="form-group col-md-12">
+                        <label class="control-label" for="password">Password</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                          <input type="password" class="form-control" value="xapi-tools" aria-describedby="Password" id="password" required />
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <p class="pull-right">
+                          <a class="btn btn-default" href="#" role="button" id="reset-auth">Reset to Defaults <i class="glyphicon glyphicon-remove-circle"></i></a>
+                          <a class="btn btn-primary" href="#" role="button" id="save-auth">Save Auth <i class="glyphicon glyphicon-save"></i></a>
+                        </p>
+                      </div>
+
+                    </form><!-- #endpoint-values -->
+
+                  </div><!-- .row -->
+
+                </div><!-- .panel-body -->
+              </div><!-- .panel-collapse -->
+            </div><!-- .panel -->
+
+          </div><!-- .col-md-4 -->
+          <div class="col-md-8">
+
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title">Statement List</h3></div>
+              <div class="panel-body">
+
+                <table id="statement-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Timestamp</th>
+                      <th>Actor Name</th>
+                      <th>Verb</th>
+                      <th>Object Name</th>
+                      <th>Object Type</th>
+                      <th>Authority Name</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+
+                  <tfoot>
+                    <tr>
+                      <th>Timestamp</th>
+                      <th>Actor Name</th>
+                      <th>Verb</th>
+                      <th>Object Name</th>
+                      <th>Object Type</th>
+                      <th>Authority Name</th>
+                      <th></th>
+                    </tr>
+                  </tfoot>
+                </table>
+
+                <div class="pull-right">
+                  <a class="btn btn-success btn-sm" href="#" role="button" id="more">Get More <i class="glyphicon glyphicon-cloud-download"></i></a>
+                </div>
+
+              </div><!-- .panel-body -->
+            </div><!-- .panel -->
+
           </div><!-- .col-md-6 -->
 
         </div><!-- .row -->
@@ -222,92 +315,6 @@
       </div><!-- .panel-body -->
     </div><!-- .panel -->
 
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Statement List</h3></div>
-      <div class="panel-body">
-
-        <table id="statement-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
-          <thead>
-            <tr>
-              <th>Timestamp</th>
-              <th>Actor Name</th>
-              <th>Verb</th>
-              <th>Object Name</th>
-              <th>Object Type</th>
-              <th>Authority Name</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tfoot>
-            <tr>
-              <th>Timestamp</th>
-              <th>Actor Name</th>
-              <th>Verb</th>
-              <th>Object Name</th>
-              <th>Object Type</th>
-              <th>Authority Name</th>
-              <th></th>
-            </tr>
-          </tfoot>
-        </table>
-
-        <div class="pull-right">
-          <a class="btn btn-success btn-sm" href="#" role="button" id="more">Get More <i class="glyphicon glyphicon-cloud-download"></i></a>
-        </div>
-
-      </div><!-- .panel-body -->
-    </div><!-- .panel -->
-
-    <div class="panel panel-default">
-      <div class="panel-heading collapser">
-        <h4 class="panel-title"><a data-toggle="collapse" data-target="#auth" href="#auth" class="collapsed">LRS Basic Auth Setup</a></h4>
-      </div>
-      <div id="auth" class="panel-collapse collapse">
-        <div class="panel-body">
-
-          <div class="row">
-
-            <form id="endpoint-values">
-
-              <div class="form-group col-md-4">
-                <label class="control-label" for="endpoint">Endpoint</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                  <input type="url" class="form-control" value="https://lrs.adlnet.gov/xapi/" aria-describedby="LRS Endpoint" id="endpoint" required />
-                </div>
-              </div>
-
-              <div class="form-group col-md-4">
-                <label class="control-label" for="username">Username</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input type="text" class="form-control" value="xapi-tools" aria-describedby="Username" id="username" required />
-                </div>
-              </div>
-
-              <div class="form-group col-md-4">
-                <label class="control-label" for="password">Password</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input type="password" class="form-control" value="xapi-tools" aria-describedby="Password" id="password" required />
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <p class="pull-right">
-                  <a class="btn btn-default" href="#" role="button" id="reset-auth">Reset to Defaults <i class="glyphicon glyphicon-remove-circle"></i></a>
-                  <a class="btn btn-primary" href="#" role="button" id="save-auth">Save Auth <i class="glyphicon glyphicon-save"></i></a>
-                </p>
-              </div>
-
-            </form><!-- #endpoint-values -->
-
-          </div><!-- .row -->
-
-        </div><!-- .panel-body -->
-      </div><!-- .panel-collapse -->
-    </div><!-- .panel -->
 
   </section>
 </body>

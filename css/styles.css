@@ -3,7 +3,9 @@
 :focus {outline:none !important;} /* remove dotted outlines in FF */
 
 body { font-size: 140%; }
-
+.wide-container {
+  padding:0 20px;
+}
 td.details-control {
 	background: url('img/details_open.png') no-repeat center center;
 	cursor: pointer;
