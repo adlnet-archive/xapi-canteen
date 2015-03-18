@@ -220,7 +220,7 @@ define(function (require) {
               var length = 1;
             }
 
-            $.notify({ title: "Status " + r.status + " " + r.statusText }, notificationSettings);
+            $.notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
 
             if (response.more != "") {
               gmore = response.more;
@@ -320,11 +320,17 @@ define(function (require) {
           var search = i.search;
           var name = i.name;
           var url = buildQueryString(search);
-          $("#saved-queries").append('<p><a title="' + url + '" rel="' + encodeURI(JSON.stringify(search)) + '" href="#">' + name + '</a></p>');
+          $("#saved-queries").append(styleSavedQueryView(url, encodeURI(JSON.stringify(search)), name));
         });
       }
 
       $("#save-query").click(function(e) {
+        e.preventDefault();
+        if ($("#query-name").val() == "") {
+          $.notify({ message: "Query Name Required!" }, notificationErrorSettings);
+          return;
+        }
+        
         var search = buildSearchArray();
         var url = buildQueryString(search);
 
@@ -343,9 +349,14 @@ define(function (require) {
           //console.log(store.get("queries"));
         }
 
-        $("#saved-queries").append('<p><a title="' + url + '" rel="' + encodeURI(JSON.stringify(search)) + '" href="#">' + name + '</a></p>');
-        e.preventDefault();
+        $("#saved-queries").append(styleSavedQueryView(url, encodeURI(JSON.stringify(search)), name));
+        $.notify({ message: "Query Saved!" }, notificationSettings);
       });
+
+      // Pretty view of saved queries
+      function styleSavedQueryView(url, data, name) {
+          return '<div class="panel panel-info"><div class="panel-heading"><h4 class="panel-title"><a href="' + url + '" rel="' + data + '" title="' + url + '" class="query-name">' + name + '</a> <span class="pull-right"><a href="#" class="delete-query"><i class="glyphicon glyphicon-remove-sign"></i></a></span></h4></div></div>';
+      }
       
       $("#clear-saved-queries").click(function(e) {
         store.remove('queries');
@@ -353,10 +364,24 @@ define(function (require) {
         e.preventDefault();
       });
 
-      $("body").on("click", "#saved-queries a", function (e) {
+      $("body").on("click", "#saved-queries .query-name", function (e) {
         $('#statement-list').DataTable().clear();
         var search = JSON.parse(decodeURI($(this).attr('rel')));
         getStatementsWithWrapper(search, null, 0);
+        e.preventDefault();
+      });
+
+      $("body").on("click", "#saved-queries .delete-query", function (e) {
+        $(this).closest('.panel').hide();
+        var name = $(this).parent().siblings(".query-name").text();
+        var q = store.get("queries");
+        var q2 = [];
+        q.forEach(function(i) {
+          if (name != i.name) {
+            q2.push(i);
+          }
+        });
+        store.set("queries", q2);
         e.preventDefault();
       });
 
@@ -365,7 +390,7 @@ define(function (require) {
           var curPage = $('#statement-list').DataTable().page();
           getStatementsWithSearch(gmore, curPage);
         } else {
-          $.notify({ title: "No more statments!" }, notificationErrorSettings);
+          $.notify({ message: "No more statments!" }, notificationErrorSettings);
         }
         e.preventDefault();
       });
