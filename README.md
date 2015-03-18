@@ -1,2 +1,2 @@
 # xapi-canteen
-Don't report without it! ;)
+Build, save and share your queries to a LRS. Don't report without it!
