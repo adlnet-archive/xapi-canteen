@@ -6,12 +6,22 @@ body { font-size: 140%; }
 .wide-container {
   padding:0 20px;
 }
+/*table {
+    table-layout:fixed;
+}
+tbody td {
+    word-wrap:break-word !important;
+}*/
 td.details-control {
 	background: url('img/details_open.png') no-repeat center center;
 	cursor: pointer;
 }
 tr.shown td.details-control {
 	background: url('img/details_close.png') no-repeat center center;
+}
+.table-bordered>tfoot>tr>th {
+  border-left:0;
+  border-bottom:0;
 }
 
 pre {

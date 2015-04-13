@@ -164,30 +164,31 @@ define(function (require) {
 
       var table = $('#statement-list').DataTable({
         "columns": [
-          { data: "timestamp", "defaultContent": "" },
-          { data: "actor.name", "defaultContent": "" },
-          { data: "verb.display.en-US", "defaultContent": "" },
-          { data: "object.definition.name.en-US", "defaultContent": "" },
-          { data: "object.objectType", "defaultContent": "" },
-          { data: "authority.name", "defaultContent": "" },
-            {
-              "className":      'details-control',
-              "orderable":      false,
-              "data":           null,
-              "defaultContent": ''
-            }
-          ],
-          "rowCallback": function( row, data ) {
-            var display = moment(data.timestamp);
-            $('td:eq(0)', row).html( '<span title="' + data.timestamp + '">' + display.fromNow() + '</span>' );
-            if (data.actor.hasOwnProperty('account') && data.actor.account.hasOwnProperty('name')) { $('td:eq(1)', row).html( data.actor.account.name ); }
-            else if (data.actor.hasOwnProperty('name') == false && data.actor.hasOwnProperty('mbox')) { $('td:eq(1)', row).html( data.actor.mbox.replace('mailto:','') ); }
-            if (data.object.hasOwnProperty('name')) { $('td:eq(3)', row).html( data.object.name ); }
-            else if (data.object.hasOwnProperty('definition') && data.object.definition.hasOwnProperty('name') == false && data.object.hasOwnProperty('id')) { $('td:eq(3)', row).html( data.object.id ); }
-            else if (data.object.hasOwnProperty('id') && data.object.hasOwnProperty('definition') == false ) { $('td:eq(3)', row).html( data.object.id ); }
-          },
-          "order": [[0, 'desc']],
-          "pageLength": 25
+          { width: "10%", data: "timestamp", "defaultContent": "" },
+          { width: "17%", data: "actor.name", "defaultContent": "" },
+          { width: "13%", data: "verb.display.en-US", "defaultContent": "" },
+          { width: "28%", data: "object.definition.name.en-US", "defaultContent": "" },
+          { width: "12%", data: "object.objectType", "defaultContent": "" },
+          { width: "15%", data: "authority.name", "defaultContent": "" },
+          {
+            width: "5%",
+            "className":      'details-control',
+            "orderable":      false,
+            "data":           null,
+            "defaultContent": ''
+          }
+        ],
+        "rowCallback": function( row, data ) {
+          var display = moment(data.timestamp);
+          $('td:eq(0)', row).html( '<span title="' + data.timestamp + '">' + display.fromNow() + '</span>' );
+          if (data.actor.hasOwnProperty('account') && data.actor.account.hasOwnProperty('name')) { $('td:eq(1)', row).html( data.actor.account.name ); }
+          else if (data.actor.hasOwnProperty('name') == false && data.actor.hasOwnProperty('mbox')) { $('td:eq(1)', row).html( data.actor.mbox.replace('mailto:','') ); }
+          if (data.object.hasOwnProperty('name')) { $('td:eq(3)', row).html( data.object.name ); }
+          else if (data.object.hasOwnProperty('definition') && data.object.definition.hasOwnProperty('name') == false && data.object.hasOwnProperty('id')) { $('td:eq(3)', row).html( data.object.id ); }
+          else if (data.object.hasOwnProperty('id') && data.object.hasOwnProperty('definition') == false ) { $('td:eq(3)', row).html( data.object.id ); }
+        },
+        "order": [[0, 'desc']],
+        "pageLength": 25
       });
 
       // Retreive statements from the LRS
